@@ -39,16 +39,18 @@
                     <?php if($locale){ ?>
                         lang: '<?= $locale ?>', // locale
                     <?php } ?>
-                    customData: { 
+                    customData(),
+                    { 
                         _token: '<?= csrf_token() ?>'
-                    },
+                    }
                     url: '<?= route("elfinder.connector") ?>',  // connector URL
                     soundPath: '<?= asset($dir.'/sounds') ?>',
-                    getFileCallback : function(file) {
+                    getFileCallback , function(file) {
                         window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
                         window.close();
                     }
-                }).elfinder('instance');
+                });
+                elfinder('instance');
             });
         </script>
     </head>
